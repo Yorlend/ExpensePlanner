@@ -25,10 +25,10 @@ class HomePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Card(
-            color: Colors.blue,
+          Card(
+            color: Theme.of(context).primaryColor,
             elevation: 5,
-            child: Text('Chart'),
+            child: const Text('Chart'),
           ),
           StreamBuilder(
             initialData: [],

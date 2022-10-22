@@ -22,31 +22,31 @@ class TXCard extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.purpleAccent,
+                color: Theme.of(context).primaryColor,
                 width: 2,
               ),
             ),
             child: Text(
               '\$${_tx.amount.toStringAsFixed(2)}',
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Colors.purple,
+                color: Theme.of(context).primaryColorDark,
               ),
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(_tx.title, style: const TextStyle(
+              Text(_tx.title, style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                color: Color.fromARGB(255, 91, 5, 115),
+                color: Theme.of(context).primaryColorDark,
               ),),
               Text(_tx.date, style: const TextStyle(
                 fontStyle: FontStyle.italic,
                 fontSize: 16,
-                color: Color.fromARGB(184, 158, 158, 158),
+                color: Colors.grey,
               ),),
             ],
           ),

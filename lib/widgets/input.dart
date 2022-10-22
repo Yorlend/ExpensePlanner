@@ -49,8 +49,8 @@ class _InputState extends State<Input> {
                     titleController.text,
                     amountController.text,
                   );
-                  titleController.clear();
-                  amountController.clear();
+
+                  Navigator.of(context).pop();
                 },
                 child: const Text(
                   'Submit Transaction',

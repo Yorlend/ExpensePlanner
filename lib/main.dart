@@ -17,10 +17,21 @@ class ExpensePlanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Expense Planner',
-      home: HomePage(),
+      title: 'Expensationeer',
+      home: const HomePage(),
+      theme: ThemeData(
+        fontFamily: 'Quicksand',
+        primarySwatch: Colors.green,
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'Quicksand',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        )
+      ),
     );
   }
 }
