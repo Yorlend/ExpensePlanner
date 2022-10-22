@@ -49,7 +49,7 @@ class _UserTXState extends State<UserTX> {
     return Column(
       children: [
         Input(_onSubmit),
-        TXList(_userTX), 
+        TXList(_userTX),
       ],
     );
   }

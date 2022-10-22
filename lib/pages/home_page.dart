@@ -19,7 +19,9 @@ class HomePage extends StatelessWidget {
             elevation: 5,
             child: Text('Chart'),
           ),
-          UserTX(),
+          Expanded(
+            child: UserTX(),
+          ),
         ],
       ),
     );

@@ -11,11 +11,9 @@ class TXList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
+    return Expanded(
       child: ListView.builder(itemBuilder: (ctx, id) => TXCard(_userTXList[id]),
-        itemCount: _userTXList.length,
-        shrinkWrap: true,
+          itemCount: _userTXList.length,
       ),
     );
   }
