@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class Input extends StatelessWidget {
+class Input extends StatefulWidget {
   final Function(String, String) submitHandler;
 
   Input(this.submitHandler, {super.key});
 
+  @override
+  State<Input> createState() => _InputState();
+}
+
+class _InputState extends State<Input> {
   final titleController = TextEditingController();
 
   final amountController = TextEditingController();
@@ -21,15 +25,17 @@ class Input extends StatelessWidget {
           children: [
             TextField(
               controller: titleController,
-              decoration: InputDecoration(
-                label: const Text('Title'),
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration(
+                label: Text('Title'),
               ),
             ),
             TextField(
               controller: amountController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                label: const Text('Amount'),
+              textInputAction: TextInputAction.done,
+              decoration: const InputDecoration(
+                label: Text('Amount'),
               ),
             ),
             Container(
@@ -39,10 +45,12 @@ class Input extends StatelessWidget {
                   foregroundColor: MaterialStateProperty.all(Colors.purple),
                 ),
                 onPressed: () {
-                  submitHandler(
+                  widget.submitHandler(
                     titleController.text,
                     amountController.text,
                   );
+                  titleController.clear();
+                  amountController.clear();
                 },
                 child: const Text(
                   'Submit Transaction',
