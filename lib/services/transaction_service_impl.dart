@@ -13,7 +13,14 @@ class TransactionServiceImpl implements TransactionService {
       return;
     }
     
-    double amountValue = double.parse(amount);
+    double amountValue = -1;
+
+    try {
+      amountValue = double.parse(amount);
+    } catch(e) {
+      /// TODO: alert user
+      return;
+    }
     if (amountValue <= 0) {
       return;
     }
