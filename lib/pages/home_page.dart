@@ -1,8 +1,10 @@
+import 'package:expense_planner/models/stat_set.dart';
 import 'package:expense_planner/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../widgets/tx_list.dart';
+import '../widgets/chart.dart';
 import '../dialogs/input_dialog.dart';
 import '../services/transaction_service.dart';
 
@@ -25,13 +27,13 @@ class HomePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Card(
-            color: Theme.of(context).primaryColor,
-            elevation: 5,
-            child: const Text('Chart'),
+          StreamBuilder(
+            initialData: StatSet(),
+            stream: GetIt.instance.get<TransactionService>().lastWeekData,
+            builder: ((context, snapshot) => Chart(snapshot.data as StatSet)),
           ),
           StreamBuilder(
-            initialData: [],
+            initialData: const [],
             stream: GetIt.instance.get<TransactionService>().data,
             builder: ((context, snapshot) => TXList(snapshot.data!.cast<Transaction>())),
           ),
