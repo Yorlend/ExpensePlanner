@@ -22,6 +22,16 @@ class TransactionStat {
   }
 
   void recalculatePart(double sum) {
-    _part = _totalAmount / sum;
+    if (sum != 0) {
+      _part = _totalAmount / sum;
+    }
+  }
+
+  String get weekAbbr {
+    const List<String> abbrs = [
+      'M', 'T', 'W', 'T', 'F', 'S', 'S'
+    ];
+
+    return abbrs[_weekDay];
   }
 }

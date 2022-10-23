@@ -11,7 +11,7 @@ class TransactionServiceImpl implements TransactionService {
   final statController = StreamController<StatSet>();
 
   @override
-  void onSubmit(String title, String amount) {
+  void onSubmit(String title, String amount, DateTime date) {
     if (title.isEmpty) {
       return;
     }
@@ -32,10 +32,18 @@ class TransactionServiceImpl implements TransactionService {
       id: DateTime.now().toString(),
       title: title,
       amount: amountValue,
-      date: DateTime.now(),
+      date: date,
     );
 
     transactions.add(tx);
+    txController.add(transactions);
+
+    calcLastWeekData();
+  }
+
+  @override
+  void onDelete(String id) {
+    transactions.removeWhere((tx) => tx.id == id);
     txController.add(transactions);
 
     calcLastWeekData();

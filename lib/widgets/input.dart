@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../dialogs/datepicker_dialog.dart';
 
 class Input extends StatefulWidget {
-  final Function(String, String) submitHandler;
+  final Function(String, String, DateTime) submitHandler;
 
-  Input(this.submitHandler, {super.key});
+  const Input(this.submitHandler, {super.key});
 
   @override
   State<Input> createState() => _InputState();
@@ -11,8 +14,9 @@ class Input extends StatefulWidget {
 
 class _InputState extends State<Input> {
   final titleController = TextEditingController();
-
   final amountController = TextEditingController();
+
+  DateTime _date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +42,38 @@ class _InputState extends State<Input> {
                 label: Text('Amount'),
               ),
             ),
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      DateFormat('yMMMMd').format(_date),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      showDatePickerDialog(context).then((value) {
+                        if (value != null) {
+                          setState(() {
+                            _date = value;
+                          });
+                        }
+                      });
+                    },
+                    child: const Text('Choose Date'),
+                  ),
+                ],
+              ),
+            ),
             Container(
               margin: const EdgeInsets.only(top: 10),
-              child: TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all(Colors.purple),
-                ),
+              child: ElevatedButton(
                 onPressed: () {
                   widget.submitHandler(
                     titleController.text,
                     amountController.text,
+                    _date,
                   );
 
                   Navigator.of(context).pop();

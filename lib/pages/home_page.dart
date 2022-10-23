@@ -39,7 +39,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => showAddTransactionDialog(context),
